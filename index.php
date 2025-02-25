@@ -18,8 +18,7 @@
             </tr>
             <tr id="fila2">
                 <td id="celda2">
-                    <!-- <p>Celda 2</p> -->
-                    <button id="buttonScanner" onclick="window.location='escaner.html'"><img id="imgScanner" src="assets/img/scaner.ico" alt="Imagen escaner" /></button>
+                    <button id="buttonScanner" onclick="window.location='escaner.php'"><img id="imgScanner" src="assets/img/scaner.ico" alt="Imagen escaner" /></button>
                 </td>
             </tr>
             <tr id="fila3">

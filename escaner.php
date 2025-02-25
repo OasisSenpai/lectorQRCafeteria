@@ -12,42 +12,27 @@
         <script src="assets/js/leerQR.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="lector" width="600"></div>
+        <div id="lector"></div>
         <p id="resultado"></p>
 
-        <!-- <script>
-            function onScanSuccess(decodedText, decodedResult) {
-                // handle the scanned code as you like, for example:
-                console.log(`Code matched = ${decodedText}`, decodedResult);
-            }
-            
-            function onScanFailure(error) {
-                // handle scan failure, usually better to ignore and keep scanning.
-                // for example:
-                console.warn(`Code scan error = ${error}`);
-            }
-            
-            let html5QrcodeScanner = new Html5QrcodeScanner(
-                "lector",
-                { fps: 10, qrbox: {width: 500, height: 500} },
-                /* verbose= */ false);
-            html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-        </script> -->
-
         <script>
+            let resultadoQR;
+
             function qr_escaneado(decodedText, decodedResult) {
-                if(decodedText) {
-                    console.log(`Code matched = ${decodedText}`, decodedResult);
+                resultadoQR = decodedText
+                if(resultadoQR) {
+                    console.log(`Code matched = ${resultadoQR}`, decodedResult);
                     document.getElementById('lector').style.display = 'block';
-                    document.getElementById('resultado').textContent = decodedText;
+                    document.getElementById('resultado').textContent = resultadoQR;
                     escaner.stop();
+                    window.location.href = `resultado.php?qr=${encodeURIComponent(resultadoQR)}`;
                 }
             }
 
             const escaner = new Html5Qrcode(/* element id */ "lector");
             const configuracion_escaner = {
                 fps:10,
-                qrbox: {width:250, height:250}
+                qrbox: {width:500, height:500}
             };
 
             escaner.start({facingMode:"environment"}, configuracion_escaner, qr_escaneado)
